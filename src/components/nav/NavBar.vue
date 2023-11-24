@@ -18,10 +18,10 @@
                         <a class="nav-link" v-scroll-to="'#SobreNos'">Sobre o Hackathon</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-scroll-to="'#marcas'">Empresas</a>
+                        <a class="nav-link" v-scroll-to="'#empresas'">Empresas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-scroll-to="'#FAQ'">Edições</a>
+                        <a class="nav-link" v-scroll-to="'#edicoes'">Edições</a>
                     </li>
                     <li class="nav-item">
                         <router-link class="nav-link" to="/cadequipe">Cadastrar Equipes</router-link>

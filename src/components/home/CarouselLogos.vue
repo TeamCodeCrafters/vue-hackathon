@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div id="marcas" class="carousel slide overflow-x-hidden" data-bs-ride="carousel">
+    <div id="empresas" class="carousel slide overflow-x-hidden" data-bs-ride="carousel">
         <div class="carousel-inner">
             <h1 class="fs-1 text-center">Empresas Parceiras</h1>
             <div class="carousel-item active">

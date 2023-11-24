@@ -8,7 +8,7 @@
                 <div class="text">
                     <h1><strong>Hackathon</strong></h1>
                     <h5>Site administrativo para equipes do Hackathon</h5>
-                    <button type="button" class="btn btn-outline-light fs-4" v-scroll-to="'#aboutHackathon'">
+                    <button type="button" class="btn btn-outline-light fs-4" v-scroll-to="'#SobreNos'">
                         Introdução
                     </button>
                 </div>
