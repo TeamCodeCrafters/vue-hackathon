@@ -1,15 +1,13 @@
-<template>
-  <div class="b-example-divider"></div>
+<script></script>
 
-  <div class="container col-xxl-8 px-4 py-5">
+<template>
+  <div class="container-fluid col-xxl-8 px-4 py-5" id="SobreNos">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
+      <div class="col-12 col-sm-8 col-lg-6">
         <img
           src="https://liga.ventures/wp-content/uploads/2019/10/alex-kotliarskyi-ourQHRTE2IM-unsplash-compressor-1.jpg"
           class="d-block mx-lg-auto img-fluid"
           alt="Bootstrap Themes"
-          width="700"
-          height="500"
           loading="lazy"
         />
       </div>
@@ -21,19 +19,19 @@
           O Hackathon do IFC Araquari é um evento tecnológico onde pessoas
           criativas se reúnem para resolver desafios através da inovação.
           Realizado no Instituto Federal Catarinense, o hackathon estimula a
-          colaboração   import SobreNos from "../components/home/SobreNos.vue";e o desenvolvimento de projetos inovadores entre
+          colaboração e o desenvolvimento de projetos inovadores entre
           estudantes e profissionais. Durante o evento, equipes competem para
           criar soluções criativas em um ambiente de intensa codificação e
           design. O objetivo vai além da competição, promovendo também
           aprendizado e networking na comunidade de tecnologia.
         </p>
-        
       </div>
     </div>
   </div>
 </template>
 
-<style>
+<style scoped>
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -41,6 +39,10 @@
   -moz-user-select: none;
   user-select: none;
 }
+
+.lead {
+    text-align: justify;
+  }
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -110,6 +112,11 @@
 
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
+}
+
+.img {
+  border-radius: 0.3rem;
+  width: 100%;
 }
 
 @media (min-width: 992px) {

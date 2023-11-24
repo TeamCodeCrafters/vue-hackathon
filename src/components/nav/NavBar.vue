@@ -15,7 +15,7 @@
                         <a class="nav-link" v-scroll-to="'#navbar'">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" v-scroll-to="'#aboutInforratica'">Sobre o Hackathon</a>
+                        <a class="nav-link" v-scroll-to="'#SobreNos'">Sobre o Hackathon</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#marcas'">Empresas</a>
