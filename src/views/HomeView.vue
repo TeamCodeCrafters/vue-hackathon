@@ -2,7 +2,7 @@
   import NavBar from "@/components/nav/NavBar.vue";
   import BGintro from "@/components/home/BGintro.vue";
   import History from "@/components/home/History.vue";
-  import SobreNos from "../components/home/SobreNos.vue";
+  import SobreNos from "@/components/home/SobreNos.vue";
 </script>
 
 <template>
