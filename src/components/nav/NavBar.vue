@@ -9,7 +9,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <img src="@/assets/img/bars-solid.png" class="bars" alt="">
             </button>
-            <div class="collapse navbar-collapse justify-content-start" id="navbarTogglerDemo02">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mb-3 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" v-scroll-to="'#navbar'">Home</a>
