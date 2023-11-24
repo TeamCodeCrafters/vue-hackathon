@@ -1,6 +1,6 @@
 <script>
 import { RouterView } from 'vue-router';
-import Footer from './components/home/Footer.vue';
+import Footer from './components/nav/Footer.vue';
 
 export default {
     components: { RouterView }
