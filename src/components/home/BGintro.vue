@@ -4,15 +4,16 @@
     <div class="container-fluid overflow-x-hidden overflow-y-hidden">
         <div class="carousel slide w-100">
             <div class="carousel-inner"></div>
-            <div class="carousel-caption d-flex align-items-center justify-content-between text-center">
+            <div class="carousel-caption d-flex">
                 <div class="col-12 col-md-6">
                     <div class="text">
-                        <h1 class="fs-1"><strong>Hackathon</strong></h1>
+                        <h1><strong>Hackathon</strong></h1>
+                        <h2><strong>IFC</strong></h2>
                         <h5>Site administrativo para equipes do Hackathon</h5>
-                        <button type="button" class="btn btn-outline-light fs-4" v-scroll-to="'#SobreNos'">
-                            Introdução
-                        </button>
                     </div>
+                    <button type="button" class="btn btn-outline-light fs-4" v-scroll-to="'#SobreNos'">
+                        Introdução
+                    </button>
                 </div>
                 <div class="col-md-6 d-none d-sm-block">
                     <img src="@/assets/img/BGintroPeople.png" alt="">
@@ -36,7 +37,7 @@
 }
 
 .carousel-caption {
-    text-align: center;
+    text-align: start;
     padding: 0;
     margin: 0;
     margin-bottom: -1.1%;
@@ -64,7 +65,16 @@ text {
 }
 
 h1 {
-    font-size: 100px;
+    font-size: 11vh;
+}
+
+h2 {
+    font-size: 11vh;
+    color: blue;
+}
+
+button {
+    margin-top: 10%;
 }
 
 img {
@@ -76,7 +86,19 @@ img {
 
 @media screen and (max-width: 767px) {
     .text {
-        margin-bottom: 100%;
+        margin-bottom: 60%;
+    }
+    h1 {
+        font-size: 7vh;
+    }
+    h2 {
+        font-size: 7vh;
+    }
+    button {
+        margin-bottom: 7vh;
+    }
+    .carousel-caption {
+        text-align: center;
     }
 }
 
