@@ -26,7 +26,7 @@
             <div class="carousel-item">
                 <div class="cards-wrapper">
                     <div class="card">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Toshiba_logo.svg/2560px-Toshiba_logo.svg.png" class="card-img-top" alt="...">
+                        <img src="@/assets/img/neo.png" class="card-img-top" alt="...">
                     </div>
                     <div class="card">
                         <img src="https://imagensemoldes.com.br/wp-content/uploads/2020/09/Figura-Logo-HP-PNG.png" class="card-img-top" alt="...">
@@ -38,7 +38,7 @@
                         <img src="https://static.vecteezy.com/system/resources/previews/019/909/451/original/dell-transparent-dell-free-free-png.png" class="card-img-top" alt="...">
                     </div>
                     <div class="card">
-                        <img src="https://logodownload.org/wp-content/uploads/2013/12/apple-logo-0.png" class="card-img-top" alt="...">
+                        <img src="@/assets/img/tax.png" class="card-img-top" alt="...">
                     </div>
                 </div>
             </div>
