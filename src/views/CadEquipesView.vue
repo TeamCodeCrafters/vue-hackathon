@@ -1,8 +1,12 @@
+<script setup>
+import NavBarAlt from "@/components/nav/NavBarAlt.vue";
+</script>
 <template>
+  <NavBarAlt />
   <div
-    class="container px-4 py-5 px-md-text-center text-lg-start my-5 justify-content-between"
+    class="container-fluid px-4 py-5  text-lg-start justify-content-center align-items-center"
   >
-    <div class="row gx-lg-5 align-items-center mb-5">
+    <div class="row gx-lg-5 justify-content-center align-items-center mb-5">
       <div class="col-lg-5 mb-5 mb-lg-0" style="z-index: 10">
         <h1
           class="my-5 display-5 fw-bold ls-tight"
@@ -132,12 +136,19 @@ hr {
   color: white;
   border: 3;
 }
-
-body {
-  background-image: url("@/assets/img/BGintro.png");
+.container-fluid {
+  background-image: url("../assets/img/BGintro.png");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.row{
+  padding-top: 90px;
+  width: 100%;
 }
 </style>

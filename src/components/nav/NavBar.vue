@@ -29,25 +29,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/login">{{ isLoggedIn ? 'Logado' : 'Login' }}</a>
                     </li>
-                    <!-- <li class="nav-item dropdown" v-if="userRole === 'admin'">
-                        <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cadastros
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <router-link class="nav-link drop" to="/cadastro-ordem-servico">Cadastro O.S.</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="nav-link drop" to="/cadastro-computador">Cadastro PC</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="nav-link drop" to="/cadastro-notebook">Cadastro Note</router-link>
-                            </li>
-                            <li class="nav-item">
-                                <router-link class="nav-link drop" to="/cadastro-usuario">Cadastro Cliente</router-link>
-                            </li>
-                        </ul>
-                    </li> -->
                 </ul>
             </div>
         </div>

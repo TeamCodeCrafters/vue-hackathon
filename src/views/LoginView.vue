@@ -3,21 +3,22 @@ import NavBarAlt from "@/components/nav/NavBarAlt.vue";
 </script>
 
 <template>
-<NavBarAlt />
-<div class="container-fluid overflow-x-hidden">
+  <NavBarAlt />
+    <div class="container-fluid overflow-x-hidden">
     <div class="row">
       <div class="col-md-6 offset-md-3 text-center mt-5 mb-5">
         <div class="card my-5 ">
           <form class="card-body cardbody-color p-lg-5">
             <div class="text-center">
-              <img src="../assets/img/logo.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                <img src="../assets/img/logo.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                 width="200px" alt="profile">
             </div>
+
             <div class="mb-3">
-              <h1>Hackathon</h1>
+                <h1>Hackathon</h1>
             </div>
             <div class="mb-3">
-              <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
+                <input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
                 placeholder="usuario@gmail.com  ">
             </div>
             <div class="mb-3">
@@ -44,35 +45,32 @@ import NavBarAlt from "@/components/nav/NavBarAlt.vue";
   height: 100vh;
   width: 100vw;
 }
-
 .row {
   margin-top: 5%;
 }
-
 .btn-color{
   background-color: #0e1c36;
   color: #fff;
   
 }
-
-.profile-image-pic{
+.profile-image-pic {
   height: 200px;
   width: 200px;
   object-fit: cover;
 }
 
-.cardbody-color{
+.cardbody-color {
   background-color: #ebf2fa;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-@media screen and (max-width: 767px) {
-    .row {
-      margin-top: 25%;
-    }
+body {
+  background-image: url("../assets/img/BGintro.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
-
 </style>
