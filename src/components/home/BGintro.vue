@@ -70,7 +70,7 @@ h1 {
 
 h2 {
     font-size: 11vh;
-    color: blue;
+    color: hsl(218, 81%, 75%);
 }
 
 button {
