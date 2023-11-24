@@ -2,7 +2,7 @@
 import UsuariosApi from '@/api/user.js'
 import NavBar from '@/components/nav/NavBar.vue'
 
-const usuarioApi = new UsuariosApi();
+const usuariosApi = new UsuariosApi();
 
 export default {
   components: {
@@ -17,13 +17,12 @@ export default {
     };
   },
   async created() {
-    const response = await usuarioApi.buscarTodosOsUsuarios();
+    const response = await usuariosApi.buscarTodosOsUsuarios();
     this.results = response.results; // Armazena os resultados originais (opcional)
     this.users = response.results.map(user => ({
       id: user.id,
       name: user.name,
       email: user.email,
-      // outras propriedades do usuário que você precisa
     }));
   },
   methods: {
@@ -39,19 +38,19 @@ export default {
         id: user.id,
         name: user.name,
         email: user.email,
-        // outras propriedades do usuário que você precisa
+
       }));
       this.user = {}; // Limpa o usuário após a operação
     },
     async excluir(user) {
-      await usuariosApi.excluirUsuario(user.id);
+      await usuarioApi.excluirUsuario(user.id);
       const response = await usuariosApi.buscarTodosOsUsuarios();
       this.results = response.results; // Atualiza os resultados originais (opcional)
       this.users = response.results.map(user => ({
         id: user.id,
         name: user.name,
         email: user.email,
-        // outras propriedades do usuário que você precisa
+
       }));
     },
     editar(user) {
@@ -88,6 +87,17 @@ export default {
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
               v-model="user.email"
+              placeholder="seuemail@gmail.com"
+            >
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Senha:</label>
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
+            <input type="text" class="form-control"
+              @keyup.enter="salvar" 
+              v-model="user.password"
               placeholder="seuemail@gmail.com"
             >
           </div>
