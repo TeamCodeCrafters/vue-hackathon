@@ -1,6 +1,5 @@
 <script>
 import { RouterView } from 'vue-router';
-import Footer from './components/nav/Footer.vue';
 
 export default {
     components: { RouterView }
@@ -9,7 +8,6 @@ export default {
 
 <template>
   <RouterView />
-  <Footer />
 </template>
 
 <style scoped></style>
