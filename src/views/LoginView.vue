@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .btn-color{
   background-color: #0e1c36;
   color: #fff;
