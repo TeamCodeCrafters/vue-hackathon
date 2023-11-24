@@ -1,16 +1,8 @@
 <script></script>
 
 <template>
-  <div class="container-fluid col-xxl-8 px-4 py-5" id="SobreNos">
+  <div class="container-fluid col-xxl-8 px-4 py-5 col-12" id="SobreNos">
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-12 col-sm-8 col-lg-6">
-        <img
-          src="https://liga.ventures/wp-content/uploads/2019/10/alex-kotliarskyi-ourQHRTE2IM-unsplash-compressor-1.jpg"
-          class="d-block mx-lg-auto img-fluid"
-          alt="Bootstrap Themes"
-          loading="lazy"
-        />
-      </div>
       <div class="col-lg-6">
         <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
           Sobre o Hackathon
@@ -26,12 +18,19 @@
           aprendizado e networking na comunidade de tecnologia.
         </p>
       </div>
+      <div class="col-sm-8 col-lg-6">
+        <img
+          src="https://liga.ventures/wp-content/uploads/2019/10/alex-kotliarskyi-ourQHRTE2IM-unsplash-compressor-1.jpg"
+          class="d-block mx-lg-auto img-fluid"
+          alt="Bootstrap Themes"
+          loading="lazy"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -41,8 +40,8 @@
 }
 
 .lead {
-    text-align: justify;
-  }
+  text-align: justify;
+}
 
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -104,7 +103,7 @@
   --bs-btn-active-color: var(--bs-btn-hover-color);
   --bs-btn-active-bg: #5a23c8;
   --bs-btn-active-border-color: #5a23c8;
-}    
+}
 
 .bd-mode-toggle {
   z-index: 1500;
