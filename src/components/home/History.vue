@@ -2,7 +2,6 @@
 
 <template>
   <div class="container-fluid overflow-x-hidden">
-    <div class="container text-center">
       <div class="row">
         <div class="col-12 text-center">
           <h3 class="main-title display-6 fw-bold">
@@ -10,51 +9,37 @@
           </h3>
           <hr class="opacity-100" />
         </div>
-
-        <div class="buttons col">
+    </div>
+    <div class="col-14 col-md-12 row">
+        <div class="col-12 col-md-12 text-center">
+          <button type="button" class="custom-btn btn-1">Vencedores</button>
           <button type="button" class="custom-btn btn-1">2023</button>
-        </div>
-        <div class="buttons col">
           <button type="button" class="custom-btn btn-1">2022</button>
-        </div>
-        <div class="buttons  col">
           <button type="button" class="custom-btn btn-1">2021</button>
-        </div>
-        <div class="buttons  col">
           <button type="button" class="custom-btn btn-1">2020</button>
-        </div>
-        <div class="buttons col">
           <button type="button" class="custom-btn btn-1">2019</button>
-        </div>
-        <div class="buttons col">
           <button type="button" class="custom-btn btn-1">2018</button>
-        </div>
-        <div class="buttons col">
           <button type="button" class="custom-btn btn-1">2017</button>
         </div>
-        <div class="buttons col">
-          <button type="button" class="custom-btn btn-1">2016</button>
-        </div>
-      </div>
       <!-- podio -->
-      <div class="container podium">
-        <div class="podium__item">
-          <p class="podium__city">Equipe 2</p>
-          <div class="podium__rank second">2</div>
+      <div class="col-12 col-md-12">
+        <div class="container podium justify-content-center text-center">
+            <div class="podium__item">
+            <p class="podium__city">Equipe 2</p>
+            <div class="podium__rank second">2</div>
+            </div>
+            <div class="podium__item">
+            <p class="podium__city">CodeCrafters</p>
+            <div class="podium__rank first">1</div>
+            </div>
+            <div class="podium__item">
+            <p class="podium__city">Equipe 3</p>
+            <div class="podium__rank third">3</div>
+            </div>
         </div>
-        <div class="podium__item">
-          <p class="podium__city">CodeCrafters</p>
-          <div class="podium__rank first">1</div>
-        </div>
-        <div class="podium__item">
-          <p class="podium__city">Equipe 3</p>
-          <div class="podium__rank third">3</div>
-        </div>
-      </div>
     </div>
-  </div>
-
-
+</div>
+</div>
 </template>
 
 <style scoped>
@@ -124,6 +109,10 @@
   }
 }
 
+button {
+  margin: 10px;
+}
+
 /* podio */
 
 body {
@@ -179,11 +168,4 @@ body {
   background: rgb(55, 40, 255);
 }
 
-.buttons{
-  padding: 10px;
-}
-
-.podium{
-  padding-left: 100px;
-}
 </style>
