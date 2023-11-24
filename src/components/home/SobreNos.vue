@@ -25,7 +25,7 @@
           estudantes e profissionais. Durante o evento, equipes competem para
           criar soluções criativas em um ambiente de intensa codificação e
           design. O objetivo vai além da competição, promovendo também
-          aprendizado e networking na comunidade de tecnologia. User
+          aprendizado e networking na comunidade de tecnologia.
         </p>
         
       </div>
