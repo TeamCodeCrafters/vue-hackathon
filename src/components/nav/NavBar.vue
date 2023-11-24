@@ -44,11 +44,11 @@
               >Cadastrar Equipes</router-link
             >
           </li>
-          <a class="navbar-brand text-light" href="#" aria-current="page">
-            <router-link to="/avaliarequipes" v-scroll-to="'#navbar'"
+          <li class="nav-item">
+            <router-link class="nav-link" to="/avaliarequipes"
               >Avaliar</router-link
             >
-          </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">{{
               isLoggedIn ? "Logado" : "Login"
