@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-    <div class="container-fluid overflow-x-hidden" id="edicoes">
+    <div class="container-fluid overflow-x-hidden">
         <div class="container text-center">
             <div class="row">
                 <div class="col-12 text-center">
@@ -82,8 +82,8 @@
 }
 
 .btn-1 {
- background: rgb(96,9,240);
- background: linear-gradient(0deg, rgba(96,9,240,1) 0%, rgba(129,5,240,1) 100%);
+ background: rgb(57, 0, 150);
+ background: linear-gradient(0deg, rgb(44, 0, 114) 0%, rgb(21, 5, 240) 100%);
  border: none;
 }
 
