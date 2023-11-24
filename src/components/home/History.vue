@@ -33,16 +33,11 @@
                   <button type="button" class="custom-btn btn-1">2016</button>
                 </div>
             </div>
-            <div class="row text-center align-items-center justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="@/assets/img/logo.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="accordion" id="accordionExample">
+  </div>
+</div>         
+</div>
+
 </template>
 
 <style scoped>
