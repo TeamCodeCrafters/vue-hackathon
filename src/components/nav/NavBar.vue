@@ -24,6 +24,9 @@
                         <a class="nav-link" v-scroll-to="'#FAQ'">Edições</a>
                     </li>
                     <li class="nav-item">
+                        <router-link class="nav-link" to="/cadequipe">Cadastrar Equipes</router-link>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/login">{{ isLoggedIn ? 'Logado' : 'Login' }}</a>
                     </li>
                     <!-- <li class="nav-item dropdown" v-if="userRole === 'admin'">
