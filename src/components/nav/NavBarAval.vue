@@ -9,9 +9,6 @@
             <a class="navbar-brand text-light" href="#" aria-current="page">
                 <router-link to="/" v-scroll-to="'#navbar'">Home</router-link>
             </a>
-            <a class="navbar-brand text-light" href="#" aria-current="page">
-                <router-link to="/avaliarequipes" v-scroll-to="'#navbar'">Avaliar</router-link>
-            </a>
         </div>
     </nav>
 </template>

@@ -1,3 +1,4 @@
+
 <script setup>
 import { reactive } from "vue";
 import NavBarAlt from "@/components/nav/NavBarAlt.vue";

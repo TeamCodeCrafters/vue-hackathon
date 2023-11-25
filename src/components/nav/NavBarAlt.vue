@@ -31,21 +31,9 @@
           <li class="nav-item">
             <router-link to="/" class="nav-link" v-scroll-to="'#navbar'">Home</router-link>
           </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/cadequipe"
-              >Cadastrar Equipes</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/avaliarequipes"
-              >Avaliar</router-link
-            >
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/usuario"
-              >Cadastrar usuários</router-link
-            >
-          </li>
+          
+          
+          
           <li class="nav-item">
             <a class="nav-link" href="/login">{{
               isLoggedIn ? "Logado" : "Login"

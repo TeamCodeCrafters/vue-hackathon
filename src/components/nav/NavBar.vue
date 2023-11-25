@@ -1,4 +1,15 @@
-<script>
+<script setup>
+import { onMounted, ref } from "vue";
+
+const is_avaliador = ref(false);
+const is_professor = ref(false)
+const is_aluno = ref(false)
+
+onMounted(() => {
+  is_avaliador.value = localStorage.getItem("is_avaliador");
+  is_professor.value = localStorage.getItem("is_professor")
+  is_aluno.value = localStorage.getItem("is_aluno")
+});
 </script>
 
 <template>
@@ -35,22 +46,24 @@
             <a class="nav-link" v-scroll-to="'#SobreNos'">Sobre o Hackathon</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" v-scroll-to="'#empresas'">Empresas</a>
+            <a class="nav-link" v-scroll-to="'#empresas'"
+              >Empresas</a
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" v-scroll-to="'#edicoes'">Edições</a>
           </li>
-          <li class="nav-item">
+          <li v-if="is_aluno == 'true'" class="nav-item">
             <router-link class="nav-link" to="/cadequipe"
               >Cadastrar Equipes</router-link
             >
           </li>
-          <li class="nav-item">
+          <li v-if="is_avaliador == 'true'" class="nav-item">
             <router-link class="nav-link" to="/avaliarequipes"
               >Avaliar</router-link
             >
           </li>
-          <li class="nav-item">
+          <li v-if="is_professor == 'true'" class="nav-item">
             <router-link class="nav-link" to="/usuario"
               >Cadastrar usuários</router-link
             >
@@ -102,7 +115,6 @@ a {
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-  
 }
 
 a:hover {
