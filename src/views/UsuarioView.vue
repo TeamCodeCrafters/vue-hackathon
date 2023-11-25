@@ -1,12 +1,12 @@
 <script>
 import UsuariosApi from '@/api/user.js'
-import NavBar from '@/components/nav/NavBar.vue'
+import NavBarAlt from '@/components/nav/NavBarAlt.vue'
 
 const usuariosApi = new UsuariosApi();
 
 export default {
   components: {
-    NavBar
+    NavBarAlt
   },
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
       this.user = {}; // Limpa o usuário após a operação
     },
     async excluir(user) {
-      await usuarioApi.excluirUsuario(user.id);
+      await usuariosApi.excluirUsuario(user.id);
       const response = await usuariosApi.buscarTodosOsUsuarios();
       this.results = response.results; // Atualiza os resultados originais (opcional)
       this.users = response.results.map(user => ({
@@ -52,9 +52,6 @@ export default {
         email: user.email,
 
       }));
-    },
-    editar(user) {
-      Object.assign(this.user, user);
     },
     limparErroCPF() {
       this.cpfErrorMessage = '';
@@ -65,10 +62,11 @@ export default {
 
 
 <template>
-  <NavBar />
+  <NavBarAlt />
   <div class="container-fluid">
-    <div class="row d-flex align-items-center justify-content-center" id="main">
-      <div class="col-md-5 col-12">
+    <div class="row d-flex justify-content-center" id="main">
+      <div class="col-md-4 col-12 d-none d-md-block"></div>
+      <div class="col-md-4 col-12">
         <div class="mb-3">
           <label class="form-label">Nome:</label>
           <div class="input-group">
@@ -94,7 +92,7 @@ export default {
         <div class="mb-3">
           <label class="form-label">Senha:</label>
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
+            <span class="input-group-text" id="basic-addon3"><i class="bi bi-lock"></i></span>
             <input type="text" class="form-control"
               @keyup.enter="salvar" 
               v-model="user.password"
@@ -103,9 +101,10 @@ export default {
           </div>
         </div>
       </div>
+      <div class="col-md-4 col-12 d-none d-md-block"></div>
       <button class="btn btn-success" @click="salvar">Salvar</button>
     </div>
-    <div class="col-12" id="clientes">
+    <div class="col-12" id="usuarios">
       <div class="row g-0">
         <div class="col-md-12">
           <div class="card-body">
@@ -114,7 +113,6 @@ export default {
                 <thead>
                   <tr>
                     <th scope="col">Nome</th>
-                    <th scope="col">Sobrenome</th>
                     <th scope="col">Email</th>
                     <th scope="col" id="action">Ações</th>
                   </tr>
@@ -125,10 +123,7 @@ export default {
                     <td>{{ user.email }}</td>
                     <td>
                       <button v-if="user" @click="excluir(user)" class="col-1 btn btn-danger">Del</button>
-                      <div class="w-100" id="separate"></div>
-                      <button v-if="user" @click="editar(user)" class="col-1 btn btn-warning">Edit</button>
                     </td>
-
                   </tr>
                 </tbody>
               </table>
@@ -182,10 +177,6 @@ button {
   width: 5%;
 }
 
-#separate {
-  height: 20px;
-}
-
 .is-invalid {
   border-color: red;
   color: red;
@@ -195,15 +186,16 @@ button {
   width: 100%;
 }
 
+.col-md-4 {
+  margin-top: 20vh;
+}
+
 @media screen and (max-width: 767px) {
   .container-fluid {
     padding-top: 25%;
   }
   table {
     width: 800px;
-  }
-  #clientes {
-    padding: 3%;
   }
   .btn-success {
     margin-top: 50px;
