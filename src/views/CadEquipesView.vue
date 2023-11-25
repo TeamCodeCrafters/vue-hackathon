@@ -41,11 +41,9 @@ async function adicionarEquipe() {
 
 <template>
   <NavBarAlt />
-  <div
-    class="container-fluid px-4 py-5 text-lg-start justify-content-center align-items-center"
-  >
-    <div class="row gx-lg-5 justify-content-center align-items-center mb-5">
-      <div class="col-lg-5 mb-5 mb-lg-0" style="z-index: 10">
+  <div class="container-fluid px-4 py-5 text-center justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center text-center">
+      <div class="col-sm-5 col-12" style="z-index: 10">
         <h1
           class="my-5 display-5 fw-bold ls-tight"
           style="color: hsl(218, 81%, 95%)"
@@ -61,12 +59,11 @@ async function adicionarEquipe() {
         </p>
       </div>
 
-      <div class="col-lg-5 justify-content-between">
-        <div class="formulario container m-5">
-          <main>
+      <div class="col-sm-6 col-12 justify-content-center text-center">
             <div class="text-center text-light p-3">
               <h2>Formulário de inscrição</h2>
             </div>
+            <div>
             <form class="row g-3" @submit.prevent="adicionarEquipe">
               <div class="col-12">
                 <input
@@ -172,7 +169,6 @@ async function adicionarEquipe() {
                 Confirmar Cadastro
               </button>
             </form>
-          </main>
         </div>
       </div>
     </div>
@@ -180,9 +176,6 @@ async function adicionarEquipe() {
 </template>
 
 <style scoped>
-.formulario {
-  padding: 20px;
-}
 
 hr {
   color: white;
@@ -194,13 +187,18 @@ hr {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0;
-  padding: 0;
   height: 100vh;
-  width: 100vw;
 }
 .row {
   padding-top: 90px;
   width: 100%;
+  margin-left: 2px;
 }
+
+@media screen and (max-width: 767px) {
+  .container-fluid {
+    height: 100%;
+  }
+}
+
 </style>

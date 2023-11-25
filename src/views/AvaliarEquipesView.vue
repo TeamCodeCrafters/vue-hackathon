@@ -16,14 +16,12 @@ onMounted(async () => {
 </script>
 <template>
   <NavBarAlt />
-  <!--Grid column-->
-  <div class="mt-5 team-container justify-content-center align-items-center">
-    <!-- Card -->
-    <div class="card col-3 m-2" v-for="equipe in equipes" :key="equipe.id">
+  <div class="container-fluid justify-content-center align-items-center text-center">
+    <div class="row text-center justify-content-between">
+    <div class="card col-12 col-sm-3 m-3" v-for="equipe in equipes" :key="equipe.id">
       <div class="card-header bg-white py-3">
         <h5 class="mb-0">{{ equipe.nome }}</h5>
       </div>
-
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
@@ -57,18 +55,24 @@ onMounted(async () => {
           </button>
         </div>
       </div>
-      <!-- Card -->
     </div>
   </div>
+</div>
 <Footer />
-  <!--Grid column-->
 </template>
 
-<style>
-.team-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+<style scoped>
+
+.row {
+  width: 100%;
+  padding: 100px;
 }
+
+@media screen and (max-width: 767px) {
+    .row {
+      margin-top: 100px;
+      padding: 0px;
+    }
+}
+
 </style>
