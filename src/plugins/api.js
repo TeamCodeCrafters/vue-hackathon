@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: `https://django-hackathon.4.us-1.fl0.io`,
+    baseURL: `https://django-hackathon.4.us-1.fl0.io/api/`,
 })
 
 api.interceptors.request.use(
