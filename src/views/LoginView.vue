@@ -67,7 +67,7 @@ const user = ref({
 const login = async () => {
   try {
     const { data } = await axios.post(
-      `http://0.0.0.0:19003/token/`,
+      `https://django-hackathon.4.us-1.fl0.io/token/`,
       user.value
     );
     if (data) {
