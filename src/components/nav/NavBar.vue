@@ -50,6 +50,9 @@
             >
           </li>
           <li class="nav-item">
+            <a class="nav-link" v-scroll-to="'/usuario'">Cadastrar usuarios</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/login">{{
               isLoggedIn ? "Logado" : "Login"
             }}</a>
