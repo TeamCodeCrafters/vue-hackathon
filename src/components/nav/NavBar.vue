@@ -1,4 +1,5 @@
-<script></script>
+<script>
+</script>
 
 <template>
   <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
@@ -50,7 +51,9 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" v-scroll-to="'/usuario'">Cadastrar usuarios</a>
+            <router-link class="nav-link" to="/usuario"
+              >Cadastrar usuários</router-link
+            >
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">{{
