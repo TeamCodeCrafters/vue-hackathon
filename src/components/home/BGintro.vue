@@ -10,10 +10,8 @@
                         <h1><strong>Hackathon</strong></h1>
                         <h2><strong>IFC</strong></h2>
                         <h5>Site administrativo para equipes do Hackathon</h5>
+                        <img src="@/assets/img/frame.png" style="width: 340px; margin-left: -13px;" alt="">
                     </div>
-                    <button type="button" class="btn btn-outline-light fs-4" v-scroll-to="'#SobreNos'">
-                        Introdução
-                    </button>
                 </div>
                 <div class="col-md-6 d-none d-sm-block">
                     <img src="@/assets/img/BGintroPeople.png" alt="">
@@ -86,16 +84,13 @@ img {
 
 @media screen and (max-width: 767px) {
     .text {
-        margin-bottom: 60%;
+        margin-bottom: 30%;
     }
     h1 {
         font-size: 7vh;
     }
     h2 {
         font-size: 7vh;
-    }
-    button {
-        margin-bottom: 7vh;
     }
     .carousel-caption {
         text-align: center;
