@@ -50,16 +50,17 @@ export default {
         <button type="button" class="custom-btn btn-1">2018</button>
         <button type="button" class="custom-btn btn-1">2017</button>
     </div>
-    <div class="col-12 col-md-12">
-  <div class="container justify-content-center text-center">
-    <div v-for="avaliacao in topAvaliacoes" :key="avaliacao.id" class="barcontainer">
-      <div class="bar" :style="{ height: Math.min(avaliacao.nota, 100) + '%' }">
-        <p class="titulo">{{ avaliacao.comentario }}</p>
-        <p class="nota">{{ avaliacao.nota }}%</p>
-      </div>
+    <div class="col-14 col-md-12">
+    <div class="container justify-content-center text-center">
+        <div v-for="(avaliacao, index) in topAvaliacoes" :key="avaliacao.id" class="barcontainer">
+            <div class="bar" :style="{ height: Math.min(avaliacao.nota, 100) + '%' }">
+                <p class="titulo" style="word-wrap: break-word">{{ avaliacao.equipe.nome }}</p>
+                <p class="nota">{{ avaliacao.nota }}%</p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
     <div class="card" style="width: 18rem;" v-for="avaliacao in avaliacoes.results" :key="avaliacao.id">
         <div class="card-body">
             <h5 class="card-title">{{ avaliacao.equipe.nome }}</h5>
@@ -110,12 +111,6 @@ export default {
 .row {
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-@media screen and (max-width: 767px) {
-  .col {
-    margin: 10px;
-  }
 }
 
 button {
@@ -169,6 +164,20 @@ button {
     font-size: 20px;
     font-weight: bold;
     color: #ffd700;
+}
+
+@media screen and (max-width: 767px) {
+    .col {
+        margin: 10px;
+    }
+    .container {
+        width: 45vh;
+    }
+    .barcontainer{
+        width: 50vh;
+        height: 30vh;
+        margin-top: 150px;
+    }
 }
 
 </style>
