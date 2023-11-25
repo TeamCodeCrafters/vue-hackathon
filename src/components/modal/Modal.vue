@@ -11,6 +11,17 @@
       <div class="modal-body">
         10
       </div>
+      <div class="col-md-6">
+                <input
+                  type="text"
+                  class="form-control nota"
+                  placeholder="nota"
+                  required
+                />
+                <div class="invalid-feedback">
+                  Por favor, insira a nota.
+                </div>
+              </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
@@ -18,3 +29,9 @@
   </div>
 </div>
 </template>
+
+<style scoped>
+.nota{
+  padding-left: 20px;
+}
+</style>
