@@ -1,75 +1,120 @@
-<script></script>
+<script>
+</script>
 
 <template>
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand text-light" href="#" aria-current="page">
-                <router-link to="/" v-scroll-to="'#navbar'"><img src="@/assets/img/logo.png" class="logo">Hackathon</router-link>
-            </a>
-            <a class="navbar-brand text-light" href="#" aria-current="page">
-                <router-link to="/" v-scroll-to="'#navbar'">Home</router-link>
-            </a>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light" href="#" aria-current="page">
+        <router-link to="/" v-scroll-to="'#navbar'"
+          ><img
+            src="@/assets/img/logo.png"
+            class="logo"
+          />Hackathon</router-link
+        >
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <img src="@/assets/img/bars-solid.png" class="bars" alt="" />
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarTogglerDemo02"
+      >
+        <ul class="li-nav navbar-nav mb-3 mb-lg-0">
+          <li class="nav-item">
+            <router-link to="/" class="nav-link" v-scroll-to="'#navbar'">Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/cadequipe"
+              >Cadastrar Equipes</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/avaliarequipes"
+              >Avaliar</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/usuario"
+              >Cadastrar usuários</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">{{
+              isLoggedIn ? "Logado" : "Login"
+            }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <style scoped>
-
 .navbar {
-    background-image: linear-gradient(#000c69,#000636,transparent);
-    transition: background-color 0.1s linear;
-    transition: 0.4s;
-    padding: 0;
+  background-image: linear-gradient(#000c69, #000636, transparent);
+  transition: background-color 0.1s linear;
+  transition: 0.4s;
+  padding: 0;
 }
 
 .navbar.solid {
-    background-color: #000421;
-    transition: background-color 0.7s ease 0s;
-    transition: 0.4s;
-    padding: 0;
+  background-color: #000421;
+  transition: background-color 0.7s ease 0s;
+  transition: 0.4s;
+  padding: 0;
 }
 
 .logo {
-    height: 70px;
-    width: 70px;
-    transition: 0.4s;
+  height: 70px;
+  width: 70px;
+  transition: 0.4s;
 }
 
 .logo.solid {
-    height: 30px;
-    width: 30px;
-    transition: 0.4s;
+  height: 30px;
+  width: 30px;
+  transition: 0.4s;
 }
 
 a {
-    color: white;
-    margin-top: 5px;
-    transition: 0.25s;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
+  color: white;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  transition: 0.25s;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  
 }
 
 a:hover {
-    color: rgb(174, 174, 174);
+  color: rgb(174, 174, 174);
 }
 
-.bars{
-    width: 35px;
-    height: 35px;
+.bars {
+  width: 35px;
+  height: 35px;
 }
 
 .dropdown-menu {
-    background-color: #212731;
+  background-color: #212731;
 }
 
 @media screen and (max-width: 767px) {
-    .drop {
-        margin-left: 20px;
-    }
-    .dropdown-menu {
-        background-color: transparent;
-    }
+  .drop {
+    margin-left: 20px;
+  }
+  .dropdown-menu {
+    background-color: transparent;
+  }
 }
-
 </style>
