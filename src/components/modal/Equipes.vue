@@ -1,5 +1,5 @@
 <script>
- import AvaliacoesApi from '@/api/avaliacoes.js';
+import AvaliacoesApi from '@/api/avaliacoes.js';
 
 const avaliacoesApi = new AvaliacoesApi();
 
@@ -7,33 +7,55 @@ export default {
   data() {
     return {
       avaliacoes: [],
+      anoSelecionado: 2023,
+      avaliacoesFiltradas: [],
     };
   },
   async created() {
     try {
-      this.avaliacoes = await avaliacoesApi.buscarTodasAsAvaliacoes();
-      console.log("Data fetched:", this.avaliacoes);
+      await this.atualizarAvaliacoes();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   },
   computed: {
     topAvaliacoes() {
-      // Garante que this.avaliacoes.results é uma array antes de chamar slice
-      const avaliacoesArray = this.avaliacoes.results || [];
-      
-      // Ordenar as avaliações por nota de forma descendente
-      const sortedAvaliacoes = avaliacoesArray.slice().sort((a, b) => b.nota - a.nota);
-      
-      // Pegar as três melhores avaliações
+      const sortedAvaliacoes = this.avaliacoesFiltradas
+        .slice()
+        .sort((a, b) => b.mediaNota - a.mediaNota);
+
       return sortedAvaliacoes.slice(0, 3);
     },
   },
   methods: {
-    getNomeDaEquipe(equipeId) {
-      // Aqui você pode implementar lógica para obter o nome da equipe
-      // Por padrão, estou usando "Equipe" seguido pelo ID da equipe como exemplo
-      return `Equipe ${equipeId}`;
+    async filtrarPorAno(ano) {
+      this.anoSelecionado = ano;
+      await this.atualizarAvaliacoes();
+    },
+    async atualizarAvaliacoes() {
+      try {
+        this.avaliacoes = await avaliacoesApi.buscarTodasAsAvaliacoes();
+        if (this.avaliacoes && this.avaliacoes.results) {
+          console.log("Data fetched:", this.avaliacoes);
+          this.avaliacoes.results.forEach((avaliacao) => {
+            avaliacao.mediaNota = this.calcularMediaNota(avaliacao);
+          });
+          this.atualizarAvaliacoesFiltradas();
+        } else {
+          console.error("Results property not found in avaliacoes:", this.avaliacoes);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    atualizarAvaliacoesFiltradas() {
+      // Adicione lógica para filtrar avaliações com base no ano selecionado
+      this.avaliacoesFiltradas = this.avaliacoes.results.filter((avaliacao) => {
+        return this.anoSelecionado ? avaliacao.equipe.edicao == this.anoSelecionado : true;
+      });
+    },
+    calcularMediaNota(avaliacao) {
+      return (avaliacao.notaLayout + avaliacao.notaFuncionalidade + avaliacao.notaApresentacao) / 3;
     },
   },
 };
@@ -41,32 +63,39 @@ export default {
 
 <template>
     <div class="col-12 col-md-12 text-center">
-        <button type="button" class="custom-btn btn-1">Vencedores</button>
-        <button type="button" class="custom-btn btn-1">2023</button>
-        <button type="button" class="custom-btn btn-1">2022</button>
-        <button type="button" class="custom-btn btn-1">2021</button>
-        <button type="button" class="custom-btn btn-1">2020</button>
-        <button type="button" class="custom-btn btn-1">2019</button>
-        <button type="button" class="custom-btn btn-1">2018</button>
-        <button type="button" class="custom-btn btn-1">2017</button>
+        <button @click="filtrarPorAno(2023)" class="custom-btn btn-1">2023</button>
+        <button @click="filtrarPorAno(2022)" class="custom-btn btn-1">2022</button>
+        <button @click="filtrarPorAno(2021)" class="custom-btn btn-1">2021</button>
+        <button @click="filtrarPorAno(2020)" class="custom-btn btn-1">2020</button>
+        <button @click="filtrarPorAno(2019)" class="custom-btn btn-1">2019</button>
+        <button @click="filtrarPorAno(2018)" class="custom-btn btn-1">2018</button>
+        <button @click="filtrarPorAno(2017)" class="custom-btn btn-1">2017</button>
+        <button @click="filtrarPorAno(2016)" class="custom-btn btn-1">2016</button>
     </div>
     <div class="col-14 col-md-12">
-    <div class="container justify-content-center text-center">
-        <div v-for="(avaliacao, index) in topAvaliacoes" :key="avaliacao.id" class="barcontainer">
-            <div class="bar" :style="{ height: Math.min(avaliacao.nota, 100) + '%' }">
-                <p class="titulo" style="word-wrap: break-word">{{ avaliacao.equipe.nome }}</p>
-                <p class="nota">{{ avaliacao.nota }}%</p>
-            </div>
+      <div class="container justify-content-center text-center">
+        <div v-for="(avaliacao, index) in topAvaliacoes" :key="index" class="barcontainer">
+          <div class="bar" :style="{ height: Math.min(avaliacao.mediaNota * 1.3, 200) + '%' }">
+            <p class="titulo" style="word-wrap: break-word">{{ avaliacao.equipe.nome }}</p>
+            <p class="nota">{{ avaliacao.mediaNota.toFixed(2) }} (Média)</p>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-    <div class="card" style="width: 18rem;" v-for="avaliacao in avaliacoes.results" :key="avaliacao.id">
-        <div class="card-body">
-            <h5 class="card-title">{{ avaliacao.equipe.nome }}</h5>
-            <p class="card-text">{{ avaliacao.comentario }}</p>
-            <p class="card-text nota">{{ avaliacao.nota }}</p>
-        </div>
+    <div class="card" style="width: 18rem;" v-for="avaliacao in avaliacoesFiltradas" :key="avaliacao.id">
+      <div class="card-body">
+        <h5 class="card-title">{{ avaliacao.equipe.nome }}</h5>
+        <hr>
+        <p class="card-text">{{ avaliacao.comentario }}</p>
+        <hr>
+        <p class="card-text">{{ avaliacao.equipe.integrante1}}</p>
+        <p class="card-text">{{ avaliacao.equipe.integrante2}}</p>
+        <p class="card-text">{{ avaliacao.equipe.integrante3}}</p>
+        <p class="card-text">{{ avaliacao.equipe.integrante4}}</p>
+        <p class="card-text">{{ avaliacao.equipe.integrante5}}</p>
+        <p class="card-text">{{ avaliacao.equipe.integrante6}}</p>
+      </div>
     </div>
 </template>
 
