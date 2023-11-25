@@ -60,7 +60,7 @@ export default {
 
 <template>
   <NavBarAlt />
-  <div class="container-fluid">
+  <div class="container-fluid overflow-x-hidden">
     <div class="row d-flex justify-content-center" id="main">
       <div class="col-md-4 col-12 d-none d-md-block"></div>
       <div class="col-md-4 col-12">
@@ -113,7 +113,6 @@ export default {
       </div>
       <div class="col-md-4 col-12"></div>
     </div>
-  </div>
 
   <div class="table-usuario col-12" id="usuarios">
     <div class="row g-0">
@@ -149,6 +148,7 @@ export default {
       </div>
     </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
@@ -162,10 +162,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  width: 100vw;
 }
 .btn-salvar {
   color: white;
@@ -181,19 +177,13 @@ export default {
 .table.table-bordered {
   border-collapse: collapse;
 }
-
-.table.table-bordered td,
-.table.table-bordered th {
-  border: 1px solid #ddd; /* Borda sólida */
-}
-
 .rounded {
   border-radius: 10px; /* Borda arredondada */
 }
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid #ddd;
+  padding: 10px;
 }
 
 th {
@@ -203,7 +193,6 @@ th {
 
 td {
   text-align: center;
-  border: 1px solid #ddd;
 }
 
 button {
@@ -237,7 +226,7 @@ button {
   }
   button {
     width: 50%;
-    height: 5%;
+    height: 15%;
   }
 }
 </style>
