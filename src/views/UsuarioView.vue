@@ -1,25 +1,25 @@
 <script>
-import UsuariosApi from '@/api/user.js'
-import NavBarAlt from '@/components/nav/NavBarAlt.vue'
+import UsuariosApi from "@/api/user.js";
+import NavBarAlt from "@/components/nav/NavBarAlt.vue";
 
 const usuariosApi = new UsuariosApi();
 
 export default {
   components: {
-    NavBarAlt
+    NavBarAlt,
   },
   data() {
     return {
       users: [],
       user: {},
       results: [],
-      cpfErrorMessage: '',
+      cpfErrorMessage: "",
     };
   },
   async created() {
     const response = await usuariosApi.buscarTodosOsUsuarios();
     this.results = response.results; // Armazena os resultados originais (opcional)
-    this.users = response.results.map(user => ({
+    this.users = response.results.map((user) => ({
       id: user.id,
       name: user.name,
       email: user.email,
@@ -34,11 +34,10 @@ export default {
       }
       const response = await usuariosApi.buscarTodosOsUsuarios();
       this.results = response.results; // Atualiza os resultados originais (opcional)
-      this.users = response.results.map(user => ({
+      this.users = response.results.map((user) => ({
         id: user.id,
         name: user.name,
         email: user.email,
-
       }));
       this.user = {}; // Limpa o usuário após a operação
     },
@@ -46,20 +45,18 @@ export default {
       await usuariosApi.excluirUsuario(user.id);
       const response = await usuariosApi.buscarTodosOsUsuarios();
       this.results = response.results; // Atualiza os resultados originais (opcional)
-      this.users = response.results.map(user => ({
+      this.users = response.results.map((user) => ({
         id: user.id,
         name: user.name,
         email: user.email,
-
       }));
     },
     limparErroCPF() {
-      this.cpfErrorMessage = '';
-    } 
+      this.cpfErrorMessage = "";
+    },
   },
 };
 </script>
-
 
 <template>
   <NavBarAlt />
@@ -67,72 +64,91 @@ export default {
     <div class="row d-flex justify-content-center" id="main">
       <div class="col-md-4 col-12 d-none d-md-block"></div>
       <div class="col-md-4 col-12">
+        <h2 class="text-center mb-4 text-light">Cadastro de Usuários</h2>
         <div class="mb-3">
-          <label class="form-label">Nome:</label>
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control"
-              @keyup.enter="salvar" 
+            <span class="input-group-text" id="basic-addon3"
+              ><i class="bi bi-person"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              @keyup.enter="salvar"
               v-model="user.name"
-              placeholder="Seu nome"
-            >
+              placeholder="Nome"
+            />
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label">Email:</label>
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
-            <input type="text" class="form-control"
-              @keyup.enter="salvar" 
+            <span class="input-group-text" id="basic-addon3"
+              ><i class="bi bi-envelope"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              @keyup.enter="salvar"
               v-model="user.email"
               placeholder="seuemail@gmail.com"
-            >
+            />
           </div>
         </div>
         <div class="mb-3">
-          <label class="form-label">Senha:</label>
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-lock"></i></span>
-            <input type="text" class="form-control"
-              @keyup.enter="salvar" 
+            <span class="input-group-text" id="basic-addon3"
+              ><i class="bi bi-lock"></i
+            ></span>
+            <input
+              type="password"
+              class="form-control"
+              @keyup.enter="salvar"
               v-model="user.password"
-              placeholder="seuemail@gmail.com"
-            >
+              placeholder="Senha"
+            />
           </div>
         </div>
+        <button class="btn btn-salvar col-12 w-100" @click="salvar">
+          Salvar
+        </button>
       </div>
-      <div class="col-md-4 col-12 d-none d-md-block"></div>
-      <button class="btn btn-success" @click="salvar">Salvar</button>
-    </div>
-    <div class="col-12" id="usuarios">
-      <div class="row g-0">
-        <div class="col-md-12">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                    <th scope="col" id="action">Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="user in users" :key="user.id">
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>
-                      <button v-if="user" @click="excluir(user)" class="col-1 btn btn-danger">Del</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="col-md-4 col-12"></div>
     </div>
   </div>
+
+  <div class="table-usuario col-12" id="usuarios">
+    <div class="row g-0">
+      <div class="col-md-12">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered rounded">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Email</th>
+                  <th scope="col" id="action">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="user in users" :key="user.id">
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>
+                    <button
+                      v-if="user"
+                      @click="excluir(user)"
+                      class="col-1 btn btn-danger"
+                    >
+                      Del
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 </template>
 
 <style scoped>
@@ -141,12 +157,39 @@ export default {
   align-items: center;
   height: 100vh;
   padding-top: 5%;
+  background-image: url("../assets/img/BGintro.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
 }
-
+.btn-salvar {
+  color: white;
+  background-color: #1453b1;
+}
 .row {
   height: 100%;
 }
+.table {
+  margin-top: 20px; /* Adiciona margem superior */
+}
 
+.table.table-bordered {
+  border-collapse: collapse;
+}
+
+.table.table-bordered td,
+.table.table-bordered th {
+  border: 1px solid #ddd; /* Borda sólida */
+}
+
+.rounded {
+  border-radius: 10px; /* Borda arredondada */
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -161,11 +204,6 @@ th {
 td {
   text-align: center;
   border: 1px solid #ddd;
-}
-
-.btn-success {
-  margin-top: 100px;
-  margin-bottom: 100px;
 }
 
 button {
@@ -197,12 +235,9 @@ button {
   table {
     width: 800px;
   }
-  .btn-success {
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
   button {
     width: 50%;
-    height: 5%;}
+    height: 5%;
+  }
 }
 </style>
