@@ -1,7 +1,7 @@
 <script></script>
 
 <template>
-  <div class="container-fluid overflow-x-hidden">
+  <div class="container-fluid overflow-x-hidden" id="edicoes">
       <div class="row">
         <div class="col-12 text-center">
           <h3 class="main-title display-6 fw-bold">

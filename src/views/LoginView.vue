@@ -73,4 +73,13 @@ body {
   background-position: center;
   background-size: cover;
 }
+
+@media screen and (max-width: 767px) {
+  .container-fluid {
+    padding-top: 25%;
+  }
+  .card {
+    margin: 10px;
+  }
+}
 </style>

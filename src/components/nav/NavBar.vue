@@ -26,7 +26,7 @@
         class="collapse navbar-collapse justify-content-end"
         id="navbarTogglerDemo02"
       >
-        <ul class="navbar-nav mb-3 mb-lg-0">
+        <ul class="li-nav navbar-nav mb-3 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" v-scroll-to="'#navbar'">Home</a>
           </li>
@@ -44,11 +44,11 @@
               >Cadastrar Equipes</router-link
             >
           </li>
-          <a class="navbar-brand text-light" href="#" aria-current="page">
-            <router-link to="/avaliarequipes" v-scroll-to="'#navbar'"
+          <li class="nav-item">
+            <router-link class="nav-link" to="/avaliarequipes"
               >Avaliar</router-link
             >
-          </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">{{
               isLoggedIn ? "Logado" : "Login"
@@ -90,10 +90,13 @@
 a {
   color: white;
   margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   transition: 0.25s;
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
+  
 }
 
 a:hover {
