@@ -1,51 +1,50 @@
-<script setup>
-import { ref, reactive, onMounted } from "vue";
+<script>
 import NavBarAlt from "@/components/nav/NavBarAlt.vue";
-import equipeService from "@/services/equipes.js";
 
-const equipes = ref([]);
-const nome = ref([]);
-const integrante1 = ref([]);
-const integrante2 = ref([]);
-const integrante3 = ref([]);
-const integrante4 = ref([]);
-const integrante5 = ref([]);
-const integrante6 = ref([]);
+import axios from "axios";
 
-const currentEquipe = reactive({
-  nome: "",
-  integrante1: "",
-  integrante2: "",
-  integrante3: "",
-  integrante4: "",
-  integrante5: "",
-  integrante6: "",
-  data: "",
-});
-
-async function save() {
-  await equipeService.saveEquipe(currentEquipe);
-  Object.assign(currentAnimal, {
-    id: "",
-    nome: "",
-    integrante1: "",
-    integrante2: "",
-    integrante3: "",
-    integrante4: "",
-    integrante5: "",
-    integrante6: "",
-    data: "",
-  });
-  showForm.value = false;
-}
-
-onMounted(async () => {
-  const data = await equipeService.getAllEquipes();
-  equipes.value = data;
-});
-
-
-const showForm = ref(false);
+export default {
+  components: {
+    NavBarAlt
+  },
+  data() {
+    return {
+      novaEquipe: {
+        nome: '',
+        integrante1: '',
+        integrante2: '',
+        integrante3: '',
+        integrante4: '',
+        integrante5: '',
+        integrante6: '',
+      },
+    };
+  },
+  methods: {
+    adicionarEquipe() {
+      axios
+        .post(
+          "https://bhttps://django-hackathon.4.us-1.fl0.io/api/equipes/",
+          this.novaEquipe
+        )
+        .then((response) => {
+          console.log("Equipe adicionada com sucesso!", response.data);
+          this.novaEquipe = {
+            nome: '',
+            integrante1: '',
+            integrante2: '',
+            integrante3: '',
+            integrante4: '',
+            integrante5: '',
+            integrante6: '',
+          };
+        })
+        .catch((error) => {
+          console.error("Erro ao adicionar equipe:", error);
+        });
+    },
+  },
+};
 </script>
 <template>
   <NavBarAlt />
@@ -76,13 +75,13 @@ const showForm = ref(false);
               <h2>Formulário de inscrição</h2>
             </div>
             <form class="row g-3">
-              <div class="col-12">
+              <div class="col-12">"
                 <input
                   type="text"
                   class="form-control"
                   id="teamName"
                   placeholder="Nome da equipe"
-                  v-model="currentEquipe.nome"
+                  v-model="novaEquipe.nome"
                   required
                 />
                 <div class="invalid-feedback">
@@ -95,7 +94,7 @@ const showForm = ref(false);
                   class="form-control"
                   id="member1"
                   placeholder="Nome do integrante"
-                  v-model="currentEquipe.integrante1"
+                  v-model="novaEquipe.integrante1"
                   required
                 />
                 <div class="invalid-feedback">
@@ -108,7 +107,7 @@ const showForm = ref(false);
                   class="form-control"
                   id="member2"
                   placeholder="Nome do integrante"
-                  v-model="currentEquipe.integrante2"
+                  v-model="novaEquipe.integrante2"
                   required
                 />
                 <div class="invalid-feedback">
@@ -121,7 +120,7 @@ const showForm = ref(false);
                   class="form-control"
                   id="member1"
                   placeholder="Nome do integrante"
-                  v-model="currentEquipe.integrante3"
+                  v-model="novaEquipe.integrante3"
                   required
                 />
                 <div class="invalid-feedback">
@@ -134,7 +133,7 @@ const showForm = ref(false);
                   class="form-control"
                   id="member2"
                   placeholder="Nome do integrante"
-                  v-model="currentEquipe.integrante4"
+                  v-model="novaEquipe.integrante4"
                   required
                 />
                 <div class="invalid-feedback">
@@ -147,7 +146,7 @@ const showForm = ref(false);
                   class="form-control"
                   id="member1"
                   placeholder="Nome do integrante"
-                  v-model="currentEquipe.integrante5"
+                  v-model="novaEquipe.integrante5"
                   required
                 />
                 <div class="invalid-feedback">
@@ -160,7 +159,7 @@ const showForm = ref(false);
                   class="form-control"
                   id="member2"
                   placeholder="Nome do integrante"
-                  v-model="currentEquipe.integrante6"
+                  v-model="novaEquipe.integrante6"
                   required
                 />
                 <div class="invalid-feedback">
@@ -169,7 +168,7 @@ const showForm = ref(false);
               </div>
               <hr class="my-4" />
 
-              <button class="w-100 btn btn-primary btn-lg" type="submit">
+              <button class="w-100 btn btn-primary btn-lg" type="submit" @click="adicionarEquipe">
                 Confirmar Cadastro
               </button>
             </form>

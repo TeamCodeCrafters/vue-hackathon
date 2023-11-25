@@ -14,6 +14,7 @@ class EquipeService {
     }
     return response.data
   }
+  
 }
 
 export default new EquipeService()
