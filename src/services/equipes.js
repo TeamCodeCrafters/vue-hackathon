@@ -2,7 +2,7 @@ import api from '../plugins/api'
 
 class EquipeService {
   async getAllEquipes() {
-    const response = await api.get('/equipes/')
+    const response = await api.get('api/equipes/')
     return response.data.results
   }
   async saveEquipe(equipe) {

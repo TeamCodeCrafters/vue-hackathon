@@ -1,90 +1,47 @@
-<script>
+<script setup>
+import { reactive } from "vue";
 import NavBarAlt from "@/components/nav/NavBarAlt.vue";
-import AnalisesApi from '@/api/equipeAnalise.js'
-import NavBar from '@/components/nav/NavBar.vue'
 
-const analisesApi = new AnalisesApi();
+import axios from "axios";
 
-export default {
-  components: {
-    NavBarAlt
-  },
-  data() {
-    return {
-      analises: [],
-      analise: {},
-      results: [],
-      cpfErrorMessage: '',
-    };
-  },
-  async created() {
-    const response = await analisesApi.buscarTodasAsAnalises();
-    this.results = response.results; // Armazena os resultados originais (opcional)
-    this.analises = response.results.map(analise => ({
-      id: analise.id,
-      nome: analise.name,
-      integrante1: analise.integrante1,
-      integrante2: analise.integrante2,
-      integrante3: analise.integrante3,
-      integrante4: analise.integrante4,
-      integrante5: analise.integrante5,
-      integrante6: analise.integrante6,
-      // outras propriedades do usuário que você precisa
-    }));
-  },
-  methods: {
-    async salvar() {
-      if (this.analise.id) {
-        await analisesApi.atualizarAnalise(this.analise);
-      } else {
-        await analisesApi.adicionarAnalise(this.analise);
-      }
-      const response = await analisesApi.buscarTodasAsAnalises();
-      this.results = response.results; // Atualiza os resultados originais (opcional)
-      this.analises = response.results.map(analise => ({
-        id: analise.id,
-        nome: analise.name,
-        integrante1: analise.integrante1,
-        integrante2: analise.integrante2,
-        integrante3: analise.integrante3,
-        integrante4: analise.integrante4,
-        integrante5: analise.integrante5,
-        integrante6: analise.integrante6,
-        // outras propriedades do usuário que você precisa
-      }));
-      this.analise = {}; // Limpa o usuário após a operação
-    },
-    async excluir(analise) {
-      await analisesApi.excluirAnalise(analise.id);
-      const response = await analisesApi.buscarTodasAsAnalises();
-      this.results = response.results; // Atualiza os resultados originais (opcional)
-      this.analises = response.results.map(analise => ({
-        id: analise.id,
-        nome: analise.nome,
-        integrante1: analise.integrante1,
-        integrante2: analise.integrante2,
-        integrante3: analise.integrante3,
-        integrante4: analise.integrante4,
-        integrante5: analise.integrante5,
-        integrante6: analise.integrante6,
-        // outras propriedades do usuário que você precisa
-      }));
-    },
-    editar(analise) {
-      Object.assign(this.analise, analise);
-    },
-    limparErroCPF() {
-      this.cpfErrorMessage = '';
-    } 
-  },
-};
+const novaEquipe = reactive({
+  nome: "",
+  integrante1: "",
+  integrante2: "",
+  integrante3: "",
+  integrante4: "",
+  integrante5: "",
+  integrante6: "",
+});
+
+async function adicionarEquipe() {
+  try {
+    const response = await axios.post(
+      "https://django-hackathon.4.us-1.fl0.io/api/equipes/",
+      novaEquipe
+    );
+    console.log("Equipe adicionada com sucesso!", response.data);
+    Object.assign(novaEquipe, {
+      nome: "",
+      integrante1: "",
+      integrante2: "",
+      integrante3: "",
+      integrante4: "",
+      integrante5: "",
+      integrante6: "",
+    });
+    alert("Equipe criada com sucesso");
+  } catch (error) {
+    console.error("Erro ao adicionar equipe:", error);
+    alert("Erro ao criar equipe");
+  }
+}
 </script>
-
 
 <template>
   <NavBarAlt />
   <div
-    class="container-fluid px-4 py-5  text-lg-start justify-content-center align-items-center"
+    class="container-fluid px-4 py-5 text-lg-start justify-content-center align-items-center"
   >
     <div class="row gx-lg-5 justify-content-center align-items-center mb-5">
       <div class="col-lg-5 mb-5 mb-lg-0" style="z-index: 10">
@@ -109,7 +66,7 @@ export default {
             <div class="text-center text-light p-3">
               <h2>Formulário de inscrição</h2>
             </div>
-            <form class="row g-3">
+            <form class="row g-3" @submit.prevent="adicionarEquipe">
               <div class="col-12">
                 <input
                   type="text"
@@ -117,8 +74,8 @@ export default {
                   id="teamName"
                   placeholder="Nome da equipe"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.nome"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.nome"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome da equipe.
@@ -131,8 +88,8 @@ export default {
                   id="member1"
                   placeholder="Nome do integrante"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.integrante1"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.integrante1"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome do integrante.
@@ -145,8 +102,8 @@ export default {
                   id="member2"
                   placeholder="Nome do integrante"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.integrante2"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.integrante2"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome do integrante.
@@ -159,8 +116,8 @@ export default {
                   id="member1"
                   placeholder="Nome do integrante"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.integrante3"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.integrante3"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome do integrante.
@@ -173,8 +130,8 @@ export default {
                   id="member2"
                   placeholder="Nome do integrante"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.integrante4"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.integrante4"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome do integrante.
@@ -187,8 +144,8 @@ export default {
                   id="member1"
                   placeholder="Nome do integrante"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.integrante5"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.integrante5"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome do integrante.
@@ -201,8 +158,8 @@ export default {
                   id="member2"
                   placeholder="Nome do integrante"
                   required
-                  @keyup.enter="salvar" 
-                  v-model="analise.integrante6"
+                  @keyup.enter="salvar"
+                  v-model="novaEquipe.integrante6"
                 />
                 <div class="invalid-feedback">
                   Por favor, insira o nome do integrante.
@@ -210,7 +167,7 @@ export default {
               </div>
               <hr class="my-4" />
 
-              <button class="w-100 btn btn-primary btn-lg" type="submit" @click="salvar">
+              <button class="w-100 btn btn-primary btn-lg" type="submit">
                 Confirmar Cadastro
               </button>
             </form>
@@ -219,48 +176,6 @@ export default {
       </div>
     </div>
   </div>
-  <div class="col-12" id="clientes">
-      <div class="row g-0">
-        <div class="col-md-12">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Integrante 1</th>
-                    <th scope="col">Integrante 2</th>
-                    <th scope="col">Integrante 3</th>
-                    <th scope="col">Integrante 4</th>
-                    <th scope="col">Integrante 5</th>
-                    <th scope="col">Integrante 6</th>
-                    <th scope="col" id="action">Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="analise in analises" :key="analise.id">
-                    <td>{{ analise.nome }}</td>
-                    <td>{{ analise.integrante1 }}</td>
-                    <td>{{ analise.integrante2 }}</td>
-                    <td>{{ analise.integrante3 }}</td>
-                    <td>{{ analise.integrante4 }}</td>
-                    <td>{{ analise.integrante5 }}</td>
-                    <td>{{ analise.integrante6 }}</td>
-
-                    <td>
-                      <button v-if="analise" @click="excluir(analise)" class="col-1 btn btn-danger">Del</button>
-                      <div class="w-100" id="separate"></div>
-                      <button v-if="analise" @click="editar(analise)" class="col-1 btn btn-warning">Edit</button>
-                    </td>
-
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 </template>
 
 <style scoped>
@@ -283,7 +198,7 @@ hr {
   height: 100vh;
   width: 100vw;
 }
-.row{
+.row {
   padding-top: 90px;
   width: 100%;
 }
