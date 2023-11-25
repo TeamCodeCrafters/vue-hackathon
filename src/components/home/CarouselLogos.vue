@@ -3,7 +3,7 @@
 <template>
     <div id="empresas" class="carousel slide overflow-x-hidden" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <h1 class="fs-1 text-center">Empresas Parceiras</h1>
+            <h1 class="fs-1 text-center">Empresas Parceiras:</h1>
             <div class="carousel-item active">
                 <div class="cards-wrapper">
                     <div class="card">
@@ -61,6 +61,8 @@
 .cards-wrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 10vh;
 }
 
 .card {
@@ -90,12 +92,6 @@ i {
 }
 
 @media screen and (max-width: 767px) {
-    .triangleLeft {
-        border-bottom: 40px solid white;
-    }
-    .triangleRight {
-        border-top: 40px solid white;
-    }
     img {
         width: 60px;
     }
