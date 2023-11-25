@@ -1,7 +1,7 @@
 <script setup>
 import NavBarAlt from "@/components/nav/NavBarAlt.vue";
 import Modal from "@/components/modal/Modal.vue";
-import Footer from "@/components/nav/Footer.vue";
+import Footer from "@/components/nav/Footer.vue"
 
 import { ref, onMounted } from "vue";
 
@@ -60,7 +60,7 @@ onMounted(async () => {
       <!-- Card -->
     </div>
   </div>
-<Footer/>
+<Footer />
   <!--Grid column-->
 </template>
 
