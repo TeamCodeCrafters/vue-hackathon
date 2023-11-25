@@ -1,4 +1,6 @@
-<script></script>
+<script setup>
+  import Equipes from '@/components/modal/Equipes.vue';
+</script>
 
 <template>
   <div class="container-fluid overflow-x-hidden" id="edicoes">
@@ -10,35 +12,9 @@
           <hr class="opacity-100" />
         </div>
     </div>
-    <div class="col-14 col-md-12 row">
-        <div class="col-12 col-md-12 text-center">
-          <button type="button" class="custom-btn btn-1">Vencedores</button>
-          <button type="button" class="custom-btn btn-1">2023</button>
-          <button type="button" class="custom-btn btn-1">2022</button>
-          <button type="button" class="custom-btn btn-1">2021</button>
-          <button type="button" class="custom-btn btn-1">2020</button>
-          <button type="button" class="custom-btn btn-1">2019</button>
-          <button type="button" class="custom-btn btn-1">2018</button>
-          <button type="button" class="custom-btn btn-1">2017</button>
-        </div>
-      <!-- podio -->
-      <div class="col-12 col-md-12">
-        <div class="container podium justify-content-center text-center">
-            <div class="podium__item">
-            <p class="podium__city">Equipe 2</p>
-            <div class="podium__rank second">2</div>
-            </div>
-            <div class="podium__item">
-            <p class="podium__city">CodeCrafters</p>
-            <div class="podium__rank first">1</div>
-            </div>
-            <div class="podium__item">
-            <p class="podium__city">Equipe 3</p>
-            <div class="podium__rank third">3</div>
-            </div>
-        </div>
+    <div class="col-14 col-md-12 row justify-content-center text-center">
+        <Equipes />
     </div>
-</div>
 </div>
 </template>
 
