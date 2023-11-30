@@ -3,7 +3,7 @@
 import { reactive } from "vue";
 import NavBarAlt from "@/components/nav/NavBarAlt.vue";
 
-import axios from "axios";
+import api from "../plugins/api";
 
 const novaEquipe = reactive({
   nome: "",
@@ -17,8 +17,8 @@ const novaEquipe = reactive({
 
 async function adicionarEquipe() {
   try {
-    const response = await axios.post(
-      "https://django-hackathon.4.us-1.fl0.io/api/equipes/",
+    const response = await api.post(
+      "/api/equipes/",
       novaEquipe
     );
     console.log("Equipe adicionada com sucesso!", response.data);

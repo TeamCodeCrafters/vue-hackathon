@@ -51,7 +51,6 @@
 
 <script setup>
 import NavBarAlt from "@/components/nav/NavBarAlt.vue";
-import axios from "axios";
 import api from "../plugins/api";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -66,8 +65,8 @@ const user = ref({
 
 const login = async () => {
   try {
-    const { data } = await axios.post(
-      `https://django-hackathon.4.us-1.fl0.io/token/`,
+    const { data } = await api.post(
+      `/token/`,
       user.value
     );
     if (data) {

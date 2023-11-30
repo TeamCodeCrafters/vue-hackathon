@@ -11,48 +11,59 @@ export default {
   data() {
     return {
       users: [],
-      user: {},
+      user: {
+        groups: '1', 
+      },
       results: [],
-      cpfErrorMessage: "",
     };
   },
   async created() {
-    const response = await usuariosApi.buscarTodosOsUsuarios();
-    this.results = response.results; // Armazena os resultados originais (opcional)
-    this.users = response.results.map((user) => ({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    }));
+    await this.buscarUsuarios();
   },
   methods: {
+    async buscarUsuarios() {
+      const response = await usuariosApi.buscarTodosOsUsuarios();
+      this.results = response.results;
+      this.users = response.results.map((user) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        groups: user.groups,
+      }));
+    },
     async salvar() {
-      if (this.user.id) {
-        await usuariosApi.atualizarUsuario(this.user);
-      } else {
-        await usuariosApi.adicionarUsuario(this.user);
+      try {
+        const requestData = {
+          name: this.user.name,
+          email: this.user.email,
+          password: this.user.password,
+          groups: [this.user.groups], // Enviando groups como uma lista
+        };
+      
+        if (this.user.id) {
+          await usuariosApi.atualizarUsuario({
+            id: this.user.id,
+            ...requestData,
+          });
+        } else {
+          await usuariosApi.adicionarUsuario(requestData);
+        }
+      
+        await this.buscarUsuarios();
+      
+        this.user = { groups: '1' };
+      } catch (error) {
+        console.error("Erro ao salvar usuário:", error);
       }
-      const response = await usuariosApi.buscarTodosOsUsuarios();
-      this.results = response.results; // Atualiza os resultados originais (opcional)
-      this.users = response.results.map((user) => ({
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      }));
-      this.user = {}; // Limpa o usuário após a operação
-    },
+},
+
     async excluir(user) {
-      await usuariosApi.excluirUsuario(user.id);
-      const response = await usuariosApi.buscarTodosOsUsuarios();
-      this.results = response.results; // Atualiza os resultados originais (opcional)
-      this.users = response.results.map((user) => ({
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      }));
-    },
-    limparErroCPF() {
-      this.cpfErrorMessage = "";
+      try {
+        await usuariosApi.excluirUsuario(user.id);
+        await this.buscarUsuarios();
+      } catch (error) {
+        console.error("Erro ao excluir usuário:", error);
+      }
     },
   },
 };
@@ -65,6 +76,13 @@ export default {
       <div class="col-md-4 col-12 d-none d-md-block"></div>
       <div class="col-md-4 col-12">
         <h2 class="text-center mb-4 text-light">Cadastro de Usuários</h2>
+        <div class="mb-3">
+          <label  for="roleSelect" class="form-label text-light">Selecione o tipo de cadastro:</label>
+          <select v-model="user.groups" class="form-select" >
+            <option value="1">Avaliador</option>
+            <option value="4">Professor</option>
+          </select>
+        </div>
         <div class="mb-3">
           <div class="input-group">
             <span class="input-group-text" id="basic-addon3"
@@ -124,6 +142,7 @@ export default {
                 <tr>
                   <th scope="col">Nome</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Grupo</th>
                   <th scope="col" id="action">Ações</th>
                 </tr>
               </thead>
@@ -131,6 +150,7 @@ export default {
                 <tr v-for="user in users" :key="user.id">
                   <td>{{ user.name }}</td>
                   <td>{{ user.email }}</td>
+                  <td>{{ user.groups }}</td>
                   <td>
                     <button
                       v-if="user"
