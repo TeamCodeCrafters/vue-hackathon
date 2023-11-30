@@ -6,9 +6,9 @@ const is_professor = ref(false)
 const is_aluno = ref(false)
 
 onMounted(() => {
-  is_avaliador.value = localStorage.getItem("is_avaliador");
-  is_professor.value = localStorage.getItem("is_professor")
-  is_aluno.value = localStorage.getItem("is_aluno")
+  is_avaliador.value = sessionStorage.getItem("is_avaliador");
+  is_professor.value = sessionStorage.getItem("is_professor")
+  is_aluno.value = sessionStorage.getItem("is_aluno")
 });
 </script>
 

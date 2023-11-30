@@ -70,21 +70,21 @@ const login = async () => {
       user.value
     );
     if (data) {
-      localStorage.setItem("token", data.access);
+      sessionStorage.setItem("token", data.access);
 
       const decodedToken = jwtDecode(data.access);
       console.log(decodedToken);
 
       if (decodedToken.user_id === 1) {
-        localStorage.setItem("userRole", "admin");
+        sessionStorage.setItem("userRole", "admin");
       } else {
-        localStorage.setItem("userRole", "user");
+        sessionStorage.setItem("userRole", "user");
       }
 
       const response = await api.get(`/api/users/${decodedToken.user_id}`);
-      localStorage.setItem("is_avaliador", response.data.is_avaliador);
-      localStorage.setItem("is_professor", response.data.is_professor);
-      localStorage.setItem("is_aluno", response.data.is_aluno);
+      sessionStorage.setItem("is_avaliador", response.data.is_avaliador);
+      sessionStorage.setItem("is_professor", response.data.is_professor);
+      sessionStorage.setItem("is_aluno", response.data.is_aluno);
 
       router.push("/");
     }
