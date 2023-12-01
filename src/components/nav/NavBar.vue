@@ -1,15 +1,8 @@
 <script setup>
-import { onMounted, ref } from "vue";
 
-const is_avaliador = ref(false);
-const is_professor = ref(false)
-const is_aluno = ref(false)
+import { is_avaliador, is_professor, is_aluno, is_logged, logout, setupSharedModule } from '../../services/logout';
 
-onMounted(() => {
-  is_avaliador.value = sessionStorage.getItem("is_avaliador");
-  is_professor.value = sessionStorage.getItem("is_professor")
-  is_aluno.value = sessionStorage.getItem("is_aluno")
-});
+setupSharedModule();
 </script>
 
 <template>
@@ -68,10 +61,11 @@ onMounted(() => {
               >Cadastrar usuários</router-link
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">{{
-              isLoggedIn ? "Logado" : "Login"
-            }}</a>
+          <li v-if="!is_logged" class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li v-if="is_logged" class="nav-item">
+            <router-link @click.native="logout" class="nav-link text-white" to="/">Logout</router-link>
           </li>
         </ul>
       </div>

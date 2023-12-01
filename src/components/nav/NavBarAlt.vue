@@ -1,43 +1,29 @@
-<script>
+<script setup>
+import { is_avaliador, is_professor, is_aluno, is_logged, logout, setupSharedModule } from '../../services/logout';
+setupSharedModule();
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
     <div class="container-fluid">
       <a class="navbar-brand text-light" href="#" aria-current="page">
-        <router-link to="/" v-scroll-to="'#navbar'"
-          ><img
-            src="@/assets/img/logo.png"
-            class="logo"
-          />Hackathon</router-link
-        >
+        <router-link to="/" v-scroll-to="'#navbar'"><img src="@/assets/img/logo.png"
+            class="logo" />Hackathon</router-link>
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarTogglerDemo02"
-        aria-controls="navbarTogglerDemo02"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <img src="@/assets/img/bars-solid.png" class="bars" alt="" />
       </button>
-      <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarTogglerDemo02"
-      >
+      <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
         <ul class="li-nav navbar-nav mb-3 mb-lg-0">
           <li class="nav-item">
             <router-link to="/" class="nav-link" v-scroll-to="'#navbar'">Home</router-link>
           </li>
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/login">{{
-              isLoggedIn ? "Logado" : "Login"
-            }}</a>
+          <li v-if="!is_logged" class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li v-if="is_logged" class="nav-item">
+            <router-link @click="logout" class="nav-link text-white" to="/">Logout</router-link>
           </li>
         </ul>
       </div>
@@ -81,7 +67,7 @@ a {
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-  
+
 }
 
 a:hover {
@@ -101,6 +87,7 @@ a:hover {
   .drop {
     margin-left: 20px;
   }
+
   .dropdown-menu {
     background-color: transparent;
   }

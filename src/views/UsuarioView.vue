@@ -12,7 +12,7 @@ export default {
     return {
       users: [],
       user: {
-        groups: '1',
+        groups: '1', 
       },
       results: [],
     };
@@ -22,32 +22,24 @@ export default {
   },
   methods: {
     async buscarUsuarios() {
-      try {
-        const response = await usuariosApi.buscarTodosOsUsuarios();
-
-        // Filtra os usuários que não têm o grupo '5' (Administradores)
-        this.users = response.results
-          .filter((user) => !user.groups.includes(5))
-          .map((user) => ({
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            groups: user.groups,
-          }));
-      } catch (error) {
-        console.error("Erro ao buscar usuários:", error);
-      }
+      const response = await usuariosApi.buscarTodosOsUsuarios();
+      this.results = response.results;
+      this.users = response.results.map((user) => ({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        groups: user.groups,
+      }));
     },
-
     async salvar() {
       try {
         const requestData = {
           name: this.user.name,
           email: this.user.email,
           password: this.user.password,
-          groups: [this.user.groups],
+          groups: [this.user.groups], // Enviando groups como uma lista
         };
-
+      
         if (this.user.id) {
           await usuariosApi.atualizarUsuario({
             id: this.user.id,
@@ -56,14 +48,14 @@ export default {
         } else {
           await usuariosApi.adicionarUsuario(requestData);
         }
-
+      
         await this.buscarUsuarios();
-
+      
         this.user = { groups: '1' };
       } catch (error) {
         console.error("Erro ao salvar usuário:", error);
       }
-    },
+},
 
     async excluir(user) {
       try {
@@ -85,30 +77,52 @@ export default {
       <div class="col-md-4 col-12">
         <h2 class="text-center mb-4 text-light">Cadastro de Usuários</h2>
         <div class="mb-3">
-          <label for="roleSelect" class="form-label text-light">Selecione o tipo de cadastro:</label>
-          <select v-model="user.groups" class="form-select">
+          <label  for="roleSelect" class="form-label text-light">Selecione o tipo de cadastro:</label>
+          <select v-model="user.groups" class="form-select" >
             <option value="1">Avaliador</option>
             <option value="4">Professor</option>
           </select>
         </div>
         <div class="mb-3">
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" @keyup.enter="salvar" v-model="user.name" placeholder="Nome" />
+            <span class="input-group-text" id="basic-addon3"
+              ><i class="bi bi-person"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              @keyup.enter="salvar"
+              v-model="user.name"
+              placeholder="Nome"
+            />
           </div>
         </div>
         <div class="mb-3">
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-envelope"></i></span>
-            <input type="text" class="form-control" @keyup.enter="salvar" v-model="user.email"
-              placeholder="seuemail@gmail.com" />
+            <span class="input-group-text" id="basic-addon3"
+              ><i class="bi bi-envelope"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control"
+              @keyup.enter="salvar"
+              v-model="user.email"
+              placeholder="seuemail@gmail.com"
+            />
           </div>
         </div>
         <div class="mb-3">
           <div class="input-group">
-            <span class="input-group-text" id="basic-addon3"><i class="bi bi-lock"></i></span>
-            <input type="password" class="form-control" @keyup.enter="salvar" v-model="user.password"
-              placeholder="Senha" />
+            <span class="input-group-text" id="basic-addon3"
+              ><i class="bi bi-lock"></i
+            ></span>
+            <input
+              type="password"
+              class="form-control"
+              @keyup.enter="salvar"
+              v-model="user.password"
+              placeholder="Senha"
+            />
           </div>
         </div>
         <button class="btn btn-salvar col-12 w-100" @click="salvar">
@@ -118,37 +132,41 @@ export default {
       <div class="col-md-4 col-12"></div>
     </div>
 
-    <div class="table-usuario col-12" id="usuarios">
-      <div class="row g-0">
-        <div class="col-md-12">
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered rounded">
-                <thead>
-                  <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Grupo</th>
-                    <th scope="col" id="action">Ações</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="user in users" :key="user.id">
-                    <td>{{ user.name }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.groups }}</td>
-                    <td>
-                      <button v-if="user" @click="excluir(user)" class="col-1 btn btn-danger">
-                        Del
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+  <div class="table-usuario col-12" id="usuarios">
+    <div class="row g-0">
+      <div class="col-md-12">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered rounded">
+              <thead>
+                <tr>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Grupo</th>
+                  <th scope="col" id="action">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="user in users" :key="user.id">
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.groups }}</td>
+                  <td>
+                    <button
+                      v-if="user"
+                      @click="excluir(user)"
+                      class="col-1 btn btn-danger"
+                    >
+                      Del
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -165,30 +183,23 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .btn-salvar {
   color: white;
   background-color: #1453b1;
 }
-
 .row {
   height: 100%;
 }
-
 .table {
-  margin-top: 20px;
-  /* Adiciona margem superior */
+  margin-top: 20px; /* Adiciona margem superior */
 }
 
 .table.table-bordered {
   border-collapse: collapse;
 }
-
 .rounded {
-  border-radius: 10px;
-  /* Borda arredondada */
+  border-radius: 10px; /* Borda arredondada */
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -230,11 +241,9 @@ button {
   .container-fluid {
     padding-top: 25%;
   }
-
   table {
     width: 800px;
   }
-
   button {
     width: 50%;
     height: 15%;

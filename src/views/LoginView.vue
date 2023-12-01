@@ -82,9 +82,11 @@ const login = async () => {
       }
 
       const response = await api.get(`/api/users/${decodedToken.user_id}`);
+      console.log("User Data:", response.data);
       sessionStorage.setItem("is_avaliador", response.data.is_avaliador);
       sessionStorage.setItem("is_professor", response.data.is_professor);
       sessionStorage.setItem("is_aluno", response.data.is_aluno);
+      sessionStorage.setItem("is_logged", true);
 
       router.push("/");
     }
